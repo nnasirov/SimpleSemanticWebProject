@@ -1,0 +1,700 @@
+<?xml version="1.0"?>
+<!DOCTYPE rdf:RDF [
+    
+     <!ENTITY owl  "http://www.w3.org/2002/07/owl#" >
+     <!ENTITY xsd  "http://www.w3.org/2001/XMLSchema#" >
+   ]>
+
+<rdf:RDF
+  xmlns     = "http://www.w3.org/TR/2003/CR-owl-guide-20030818/Product#"
+  xmlns:vin = "http://www.w3.org/TR/2003/CR-owl-guide-20030818/Product#"
+  xml:base  = "http://www.w3.org/TR/2003/CR-owl-guide-20030818/Product#"
+  xmlns:owl = "http://www.w3.org/2002/07/owl#"
+  xmlns:rdf = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:rdfs= "http://www.w3.org/2000/01/rdf-schema#"
+  xmlns:xsd = "http://www.w3.org/2001/XMLSchema#">
+    <owl:Ontology rdf:about=""/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!--  #hasBrand -->
+
+    <owl:ObjectProperty rdf:ID="hasBrand">
+        <rdfs:subPropertyOf rdf:resource="#haslaptopDetails"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:range rdf:resource="#LaptopBrand"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!--  #hasCPU -->
+
+    <owl:ObjectProperty rdf:ID="hasCPU">
+        <rdfs:subPropertyOf rdf:resource="#haslaptopDetails"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:range rdf:resource="#LaptopCPU"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!--  #hasRam -->
+
+    <owl:ObjectProperty rdf:ID="hasRam">
+        <rdfs:subPropertyOf rdf:resource="#haslaptopDetails"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:range rdf:resource="#LaptopRam"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!--  #hasRegion -->
+
+    <owl:ObjectProperty rdf:ID="hasRegion">
+        <rdfs:subPropertyOf rdf:resource="#haslaptopDetails"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+        <rdfs:range rdf:resource="#Region"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!--  #hasType -->
+
+    <owl:ObjectProperty rdf:ID="hasType">
+        <rdfs:subPropertyOf rdf:resource="#haslaptopDetails"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:range rdf:resource="#LaptopType"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!--  #haslaptopDetails -->
+
+    <owl:ObjectProperty rdf:ID="haslaptopDetails">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="#Laptops"/>
+        <rdfs:range rdf:resource="#LaptopDetails"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!--  #Kategori -->
+
+    <owl:Class rdf:ID="Kategori"/>
+    
+
+
+    <!--  #LaptopBrand -->
+
+    <owl:Class rdf:ID="LaptopBrand">
+        <rdfs:subClassOf rdf:resource="#LaptopDetails"/>
+    </owl:Class>
+    
+
+
+    <!--  #LaptopCPU -->
+
+    <owl:Class rdf:ID="LaptopCPU">
+        <rdfs:subClassOf rdf:resource="#LaptopDetails"/>
+            <owl:oneOf rdf:parseType="Collection">
+		      <owl:Thing rdf:about="#I7" />
+		      <owl:Thing rdf:about="#I5" />
+		      <owl:Thing rdf:about="#I3" />
+		      <owl:Thing rdf:about="#Celeron" />
+		    </owl:oneOf>
+    </owl:Class>
+    
+
+
+    <!--  #LaptopDetails -->
+
+    <owl:Class rdf:ID="LaptopDetails">
+        <rdfs:subClassOf rdf:resource="#Laptops"/>
+    </owl:Class>
+    
+
+
+    <!--  #LaptopRam -->
+
+    <owl:Class rdf:ID="LaptopRam">
+        <rdfs:subClassOf rdf:resource="#LaptopDetails"/>
+           <owl:oneOf rdf:parseType="Collection">
+		      <owl:Thing rdf:about="#32GB" />
+		      <owl:Thing rdf:about="#16GB" />
+		      <owl:Thing rdf:about="#8GB" />
+		      <owl:Thing rdf:about="#4GB" />
+		   </owl:oneOf>  
+    </owl:Class>
+    
+
+
+    <!--  #LaptopType -->
+
+    <owl:Class rdf:ID="LaptopType">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:oneOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="#Business"/>
+                    <rdf:Description rdf:about="#Gaming"/>
+                    <rdf:Description rdf:about="#Tablet"/>
+                    <rdf:Description rdf:about="#Ultra"/>
+                    <rdf:Description rdf:about="#Standart"/>
+                </owl:oneOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="#LaptopDetails"/>
+    </owl:Class>
+    
+
+
+    <!--  #Laptops -->
+
+    <owl:Class rdf:ID="Laptops">
+        <rdfs:subClassOf rdf:resource="#Kategori"/>
+        
+    </owl:Class>
+    
+
+
+    <!--  #Region -->
+
+    <owl:Class rdf:ID="Region"/>
+    
+
+
+    <!--  #SensorLaptops -->
+
+    <owl:Class rdf:ID="SensorLaptops">
+        <rdfs:subClassOf rdf:resource="#Laptops"/>
+    </owl:Class>
+    
+
+
+    <!--  #SensorUltraBookLaptops -->
+
+    <owl:Class rdf:ID="SensorUltraBookLaptops">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="#SensorLaptops"/>
+                    <rdf:Description rdf:about="#UltraBookLaptops"/>
+                </owl:unionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="#Laptops"/>
+    </owl:Class>
+    
+
+
+    <!--  #TabletLaptops -->
+
+    <owl:Class rdf:ID="TabletLaptops">
+        <rdfs:subClassOf rdf:resource="#Laptops"/>
+    </owl:Class>
+    
+
+
+    <!--  #UltraBookLaptops -->
+
+    <owl:Class rdf:ID="UltraBookLaptops">
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="#Laptops"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="#hasType"/>
+                        <owl:hasValue rdf:resource="#Ultra"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <owl:Class rdf:ID="StandartLaptops">
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="#Laptops"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="#hasType"/>
+                        <owl:hasValue rdf:resource="#Standart"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!--  #Business -->
+
+    <owl:Thing rdf:ID="Business">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    </owl:Thing>
+    
+
+
+    <!--  #Gaming -->
+
+    <owl:Thing rdf:ID="Gaming">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    </owl:Thing>
+    
+
+
+    <!--  #Tablet -->
+
+    <owl:Thing rdf:ID="Tablet">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    </owl:Thing>
+    
+
+
+    <!--  #Ultra -->
+
+    <owl:Thing rdf:ID="Ultra">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    </owl:Thing>
+    
+   <Region rdf:ID="VatanBilgisayar"/>
+   <Region rdf:ID="Teknosa"/>
+   
+   <Region rdf:ID= "TaksimVatan">
+   		<vin:hasRegion rdf:resource = "#VatanBilgisayar"/>
+   </Region>
+   
+   <Region rdf:ID= "CevizlibagVatan">
+   		<vin:hasRegion rdf:resource = "#VatanBilgisayar"/>
+   </Region>
+   
+    <Region rdf:ID= "CevizlibagVatan_No1">
+   		<vin:hasRegion rdf:resource = "#CevizlibagVatan"/>
+   </Region>
+   
+   <Region rdf:ID= "TaksimTeknosa">
+   		<vin:hasRegion rdf:resource = "#Teknosa"/>
+   </Region>
+   
+    <vin:Region rdf:ID= "TaksimTeknosa_No1">
+   		<vin:hasRegion rdf:resource ="#TaksimTeknosa"/>
+   </vin:Region>
+   
+   <Region rdf:ID= "CevahirTeknosa">
+   		<vin:hasRegion rdf:resource = "#Teknosa"/>
+   </Region>
+   
+   
+   
+   <LaptopBrand rdf:ID="AsusTransformer"/>
+   
+    <TabletLaptops rdf:ID="TP200SA-FV0110TS">
+		<vin:hasCPU rdf:resource = "#I7" />
+		<vin:hasRam rdf:resource = "#16GB" />
+		<vin:hasType rdf:resource = "#Tablet" />
+		<vin:hasBrand rdf:resource = "#AsusTransformer" />
+		<vin:hasRegion rdf:resource="#TaksimVatan"/>
+	</TabletLaptops>
+	
+	 <TabletLaptops rdf:ID="T101HA">
+		<vin:hasCPU rdf:resource = "#I3" />
+		<vin:hasRam rdf:resource = "#8GB" />
+		<vin:hasType rdf:resource = "#Tablet" />
+		<vin:hasBrand rdf:resource = "#AsusTransformer" />
+		<vin:hasRegion rdf:resource="#TaksimVatan"/>
+	</TabletLaptops>
+	
+	 <TabletLaptops rdf:ID="T303UA">
+		<vin:hasCPU rdf:resource = "#I5" />
+		<vin:hasRam rdf:resource = "#16GB" />
+		<vin:hasType rdf:resource = "#Tablet" />
+		<vin:hasBrand rdf:resource = "#AsusTransformer" />
+		<vin:hasRegion rdf:resource="#TaksimVatan"/>
+	</TabletLaptops>
+	
+	 <TabletLaptops rdf:ID="T300CHi">
+		<vin:hasCPU rdf:resource = "#I7" />
+		<vin:hasRam rdf:resource = "#16GB" />
+		<vin:hasType rdf:resource = "#Tablet" />
+		<vin:hasBrand rdf:resource = "#AsusTransformer" />
+		<vin:hasRegion rdf:resource="#CevizlibagVatan"/>
+	</TabletLaptops>
+	
+	 <TabletLaptops rdf:ID="TP200SA-FV0110TS">
+		<vin:hasCPU rdf:resource = "#I7" />
+		<vin:hasRam rdf:resource = "#16GB" />
+		<vin:hasType rdf:resource = "#Tablet" />
+		<vin:hasBrand rdf:resource = "#AsusTransformer" />
+		<vin:hasRegion rdf:resource="#CevizlibagVatan"/>
+	</TabletLaptops>
+	
+	<TabletLaptops rdf:ID="TP200SA-12345">
+		<vin:hasCPU rdf:resource = "#Celeron" />
+		<vin:hasRam rdf:resource = "#8GB" />
+		<vin:hasType rdf:resource = "#Tablet" />
+		<vin:hasBrand rdf:resource = "#AsusTransformer" />
+		<vin:hasRegion rdf:resource="#CevizlibagVatan"/>
+	</TabletLaptops>
+	
+	<LaptopBrand rdf:ID="LenevoTablet"/>
+	
+	<TabletLaptops rdf:ID="L10125">
+		<vin:hasCPU rdf:resource = "#I5" />
+		<vin:hasRam rdf:resource = "#8GB" />
+		<vin:hasType rdf:resource = "#Tablet" />
+		<vin:hasBrand rdf:resource = "#LenevoTablet" />
+		<vin:hasRegion rdf:resource="#CevizlibagVatan"/>
+	</TabletLaptops>
+	
+	<LaptopBrand rdf:ID="ASUS"/>
+	<LaptopBrand rdf:ID="LENOVO"/>
+	
+    <UltraBookLaptops rdf:ID="UX303BB">
+    	<vin:hasCPU rdf:resource = "#I7" />
+		<vin:hasRam rdf:resource = "#16GB" />
+		<vin:hasType rdf:resource = "#Ultra" />
+		<vin:hasBrand rdf:resource = "#ASUS" />
+		<vin:hasRegion rdf:resource="#TaksimTeknosa"/>
+	</UltraBookLaptops>
+	
+	<UltraBookLaptops rdf:ID="UY40012">
+    	<vin:hasCPU rdf:resource = "#I5" />
+		<vin:hasRam rdf:resource = "#16GB" />
+		<vin:hasType rdf:resource = "#Ultra" />
+		<vin:hasBrand rdf:resource = "#ASUS" />
+		<vin:hasRegion rdf:resource="#TaksimTeknosa"/>
+	</UltraBookLaptops>
+	
+	<UltraBookLaptops rdf:ID="TR8795">
+    	<vin:hasCPU rdf:resource = "#I7" />
+		<vin:hasRam rdf:resource = "#32GB" />
+		<vin:hasType rdf:resource = "#Ultra" />
+		<vin:hasBrand rdf:resource = "#ASUS" />
+		<vin:hasRegion rdf:resource="#TaksimTeknosa"/>
+	</UltraBookLaptops>
+	
+	<UltraBookLaptops rdf:ID="N552vW">
+    	<vin:hasCPU rdf:resource = "#I7" />
+		<vin:hasRam rdf:resource = "#16GB" />
+		<vin:hasType rdf:resource = "#Ultra" />
+		<vin:hasBrand rdf:resource = "#ASUS" />
+		<vin:hasRegion rdf:resource="#TaksimTeknosa"/>
+	</UltraBookLaptops>
+	
+	<UltraBookLaptops rdf:ID="YOGA-510">
+    	<vin:hasCPU rdf:resource = "#I5" />
+		<vin:hasRam rdf:resource = "#8GB" />
+		<vin:hasType rdf:resource = "#Ultra" />
+		<vin:hasBrand rdf:resource = "#Lenovo" />
+		<vin:hasRegion rdf:resource="#TaksimTeknosa_No1"/>
+	</UltraBookLaptops>
+	
+	
+	<LaptopBrand rdf:ID="HP"/>
+	
+	<SensorLaptops rdf:ID="ProBook-510">
+    	<vin:hasCPU rdf:resource = "#I5" />
+		<vin:hasRam rdf:resource = "#8GB" />
+		<vin:hasBrand rdf:resource = "#HP" />
+		<vin:hasRegion rdf:resource="#TaksimTeknosa_No1"/>
+	</SensorLaptops>
+	
+	<SensorLaptops rdf:ID="ProBook-610">
+    	<vin:hasCPU rdf:resource = "#I7" />
+		<vin:hasRam rdf:resource = "#16GB" />
+		<vin:hasBrand rdf:resource = "#HP" />
+		<vin:hasRegion rdf:resource="#TaksimTeknosa_No1"/>
+	</SensorLaptops>
+	
+	<SensorLaptops rdf:ID="ProBook-710">
+    	<vin:hasCPU rdf:resource = "#Celeron" />
+		<vin:hasRam rdf:resource = "#32GB" />
+		<vin:hasBrand rdf:resource = "#ASUS" />
+		<vin:hasRegion rdf:resource="#TaksimTeknosa_No1"/>
+	</SensorLaptops>
+	
+	<SensorLaptops rdf:ID="ProBook-810">
+    	<vin:hasCPU rdf:resource = "#Celeron" />
+		<vin:hasRam rdf:resource = "#32GB" />
+		<vin:hasBrand rdf:resource = "#ASUS" />
+		<vin:hasRegion rdf:resource="#TaksimTeknosa_No1"/>
+	</SensorLaptops>
+	
+	<SensorLaptops rdf:ID="ProBook-910">
+    	<vin:hasCPU rdf:resource = "#I5" />
+		<vin:hasRam rdf:resource = "#4GB" />
+		<vin:hasBrand rdf:resource = "#LENOVO" />
+		<vin:hasRegion rdf:resource="#CevizlibagVatan_No1"/>
+	</SensorLaptops>
+	
+	<StandartLaptops rdf:ID="K55-55">
+    	<vin:hasCPU rdf:resource = "#I5" />
+		<vin:hasRam rdf:resource = "#16GB" />
+		<vin:hasBrand rdf:resource = "#Lenovo" />
+		<vin:hasRegion rdf:resource="#TaksimTeknosa"/>
+	</StandartLaptops>
+	
+	<StandartLaptops rdf:ID="K55-56">
+    	<vin:hasCPU rdf:resource = "#I5" />
+		<vin:hasRam rdf:resource = "#16GB" />
+		<vin:hasBrand rdf:resource = "#Lenovo" />
+		<vin:hasRegion rdf:resource="#CevizlibagVatan_No1"/>
+	</StandartLaptops>
+	
+	<StandartLaptops rdf:ID="K55-57">
+    	<vin:hasCPU rdf:resource = "#I5" />
+		<vin:hasRam rdf:resource = "#16GB" />
+		<vin:hasBrand rdf:resource = "#Lenovo" />
+		<vin:hasRegion rdf:resource="#TaksimTeknosa"/>
+	</StandartLaptops>
+	
+	<StandartLaptops rdf:ID="K55-58">
+    	<vin:hasCPU rdf:resource = "#I5" />
+		<vin:hasRam rdf:resource = "#16GB" />
+		<vin:hasBrand rdf:resource = "#Lenovo" />
+		<vin:hasRegion rdf:resource="#CevizlibagVatan_No1"/>
+	</StandartLaptops>
+	
+	<StandartLaptops rdf:ID="K55-59">
+    	<vin:hasCPU rdf:resource = "#I5" />
+		<vin:hasRam rdf:resource = "#16GB" />
+		<vin:hasBrand rdf:resource = "#Lenovo" />
+		<vin:hasRegion rdf:resource="#TaksimTeknosa"/>
+	</StandartLaptops>
+	
+	<StandartLaptops rdf:ID="K55-60">
+    	<vin:hasCPU rdf:resource = "#I3" />
+		<vin:hasRam rdf:resource = "#16GB" />
+		<vin:hasBrand rdf:resource = "#ASUS" />
+		<vin:hasRegion rdf:resource="#TaksimTeknosa_No1"/>
+	</StandartLaptops>
+	
+	<StandartLaptops rdf:ID="K55-61">
+    	<vin:hasCPU rdf:resource = "#Celeron" />
+		<vin:hasRam rdf:resource = "#16GB" />
+		<vin:hasBrand rdf:resource = "#ASUS" />
+		<vin:hasRegion rdf:resource="#TaksimTeknosa"/>
+	</StandartLaptops>
+	
+	<SensorUltraBookLaptops rdf:ID="RT-8947">
+    	<vin:hasCPU rdf:resource = "#Celeron" />
+		<vin:hasRam rdf:resource = "#16GB" />
+		<vin:hasBrand rdf:resource = "#ASUS" />
+		<vin:hasRegion rdf:resource="#TaksimTeknosa"/>
+	</SensorUltraBookLaptops>
+		
+	<StandartLaptops rdf:ID="K56-60">
+    	<vin:hasCPU rdf:resource = "#I5" />
+		<vin:hasRam rdf:resource = "#16GB" />
+		<vin:hasBrand rdf:resource = "#ASUS" />
+		<vin:hasRegion rdf:resource="#TaksimTeknosa_No1"/>
+	</StandartLaptops>
+	<StandartLaptops rdf:ID="K55-6096">
+    	<vin:hasCPU rdf:resource = "#I3" />
+		<vin:hasRam rdf:resource = "#16GB" />
+		<vin:hasBrand rdf:resource = "#ASUS" />
+		<vin:hasRegion rdf:resource="#TaksimTeknosa_No1"/>
+	</StandartLaptops>
+	<StandartLaptops rdf:ID="xert55-60">
+    	<vin:hasCPU rdf:resource = "#I3" />
+		<vin:hasRam rdf:resource = "#16GB" />
+		<vin:hasBrand rdf:resource = "#ASUS" />
+		<vin:hasRegion rdf:resource="#TaksimTeknosa"/>
+	</StandartLaptops>
+	<StandartLaptops rdf:ID="KX55-6890">
+    	<vin:hasCPU rdf:resource = "#I3" />
+		<vin:hasRam rdf:resource = "#4GB" />
+		<vin:hasBrand rdf:resource = "#ASUS" />
+		<vin:hasRegion rdf:resource="#TaksimTeknosa_No1"/>
+	</StandartLaptops>
+	
+	<StandartLaptops rdf:ID="K55451-60">
+    	<vin:hasCPU rdf:resource = "#I7" />
+		<vin:hasRam rdf:resource = "#32GB" />
+		<vin:hasBrand rdf:resource = "#HP" />
+		<vin:hasRegion rdf:resource="#TaksimTeknosa"/>
+	</StandartLaptops>
+	
+	<StandartLaptops rdf:ID="KE589-606">
+    	<vin:hasCPU rdf:resource = "#I3" />
+		<vin:hasRam rdf:resource = "#16GB" />
+		<vin:hasBrand rdf:resource = "#LENOVO" />
+		<vin:hasRegion rdf:resource="#CevizlibagVatan"/>
+	</StandartLaptops>
+	
+	<StandartLaptops rdf:ID="K512345-60">
+    	<vin:hasCPU rdf:resource = "#Celeron" />
+		<vin:hasRam rdf:resource = "#4GB" />
+		<vin:hasBrand rdf:resource = "#LENOVO" />
+		<vin:hasRegion rdf:resource="#CevizlibagVatan"/>
+	</StandartLaptops>
+	
+	<StandartLaptops rdf:ID="KP55-60">
+    	<vin:hasCPU rdf:resource = "#I5" />
+		<vin:hasRam rdf:resource = "#16GB" />
+		<vin:hasBrand rdf:resource = "#ASUS" />
+		<vin:hasRegion rdf:resource="#TaksimTeknosa_No1"/>
+	</StandartLaptops>
+	
+	<StandartLaptops rdf:ID="K155-6056789">
+    	<vin:hasCPU rdf:resource = "#I3" />
+		<vin:hasRam rdf:resource = "#16GB" />
+		<vin:hasBrand rdf:resource = "#ASUS" />
+		<vin:hasRegion rdf:resource="#CevizlibagVatan"/>
+	</StandartLaptops>
+	
+	<StandartLaptops rdf:ID="HK555-60">
+    	<vin:hasCPU rdf:resource = "#I7" />
+		<vin:hasRam rdf:resource = "#16GB" />
+		<vin:hasBrand rdf:resource = "#LENOVO" />
+		<vin:hasRegion rdf:resource="#CevizlibagVatan"/>
+	</StandartLaptops>
+	
+	<StandartLaptops rdf:ID="K551-60456">
+    	<vin:hasCPU rdf:resource = "#I3" />
+		<vin:hasRam rdf:resource = "#16GB" />
+		<vin:hasBrand rdf:resource = "#ASUS" />
+		<vin:hasRegion rdf:resource="#TaksimTeknosa_No1"/>
+	</StandartLaptops>
+	
+	<StandartLaptops rdf:ID="K5589-620">
+    	<vin:hasCPU rdf:resource = "#I5" />
+		<vin:hasRam rdf:resource = "#4GB" />
+		<vin:hasBrand rdf:resource = "#ASUS" />
+		<vin:hasRegion rdf:resource="#CevizlibagVatan"/>
+	</StandartLaptops>
+	
+	<StandartLaptops rdf:ID="K56878-620">
+    	<vin:hasCPU rdf:resource = "#I7" />
+		<vin:hasRam rdf:resource = "#16GB" />
+		<vin:hasBrand rdf:resource = "#LENOVO" />
+		<vin:hasRegion rdf:resource="#TaksimTeknosa_No1"/>
+	</StandartLaptops>
+	
+	<StandartLaptops rdf:ID="PO55-60456">
+    	<vin:hasCPU rdf:resource = "#I3" />
+		<vin:hasRam rdf:resource = "#4GB" />
+		<vin:hasBrand rdf:resource = "#ASUS" />
+		<vin:hasRegion rdf:resource="#TaksimTeknosa_No1"/>
+	</StandartLaptops>
+	
+	<SensorUltraBookLaptops rdf:ID="RT-8945">
+    	<vin:hasCPU rdf:resource = "#Celeron" />
+		<vin:hasRam rdf:resource = "#16GB" />
+		<vin:hasBrand rdf:resource = "#ASUS" />
+		<vin:hasRegion rdf:resource="#TaksimTeknosa"/>
+	</SensorUltraBookLaptops>
+	<SensorUltraBookLaptops rdf:ID="GT-8949">
+    	<vin:hasCPU rdf:resource = "#Celeron" />
+		<vin:hasRam rdf:resource = "#8GB" />
+		<vin:hasBrand rdf:resource = "#ASUS" />
+		<vin:hasRegion rdf:resource="#TaksimTeknosa"/>
+	</SensorUltraBookLaptops>
+	<SensorUltraBookLaptops rdf:ID="ED-8947">
+    	<vin:hasCPU rdf:resource = "#I7" />
+		<vin:hasRam rdf:resource = "#16GB" />
+		<vin:hasBrand rdf:resource = "#ASUS" />
+		<vin:hasRegion rdf:resource="#TaksimTeknosa"/>
+	</SensorUltraBookLaptops>
+	<SensorUltraBookLaptops rdf:ID="PT-8347">
+    	<vin:hasCPU rdf:resource = "#Celeron" />
+		<vin:hasRam rdf:resource = "#16GB" />
+		<vin:hasBrand rdf:resource = "#ASUS" />
+		<vin:hasRegion rdf:resource="#TaksimTeknosa"/>
+	</SensorUltraBookLaptops>
+	<SensorUltraBookLaptops rdf:ID="R3-8947">
+    	<vin:hasCPU rdf:resource = "#Celeron" />
+		<vin:hasRam rdf:resource = "#16GB" />
+		<vin:hasBrand rdf:resource = "#ASUS" />
+		<vin:hasRegion rdf:resource="#TaksimTeknosa"/>
+	</SensorUltraBookLaptops>
+	<SensorUltraBookLaptops rdf:ID="R8-8947">
+    	<vin:hasCPU rdf:resource = "#Celeron" />
+		<vin:hasRam rdf:resource = "#16GB" />
+		<vin:hasBrand rdf:resource = "#ASUS" />
+		<vin:hasRegion rdf:resource="#TaksimTeknosa"/>
+	</SensorUltraBookLaptops>
+	
+	
+	<owl:AllDifferent>
+      <owl:distinctMembers rdf:parseType="Collection">
+     	 <vin:LaptopRam rdf:about="#16GB" />
+     	 <vin:LaptopRam rdf:about="#32GB" />
+     	 <vin:LaptopRam rdf:about="#8GB" />
+     	 <vin:LaptopRam rdf:about="#4GB" />
+      </owl:distinctMembers>
+  	</owl:AllDifferent>
+	
+
+	<owl:AllDifferent>
+      <owl:distinctMembers rdf:parseType="Collection">
+     	 <vin:LaptopCPU rdf:about="#I7" />
+     	 <vin:LaptopCPU rdf:about="#I5" />
+     	 <vin:LaptopCPU rdf:about="#I3" />
+     	 <vin:LaptopCPU rdf:about="#Celeron" />
+      </owl:distinctMembers>
+  	</owl:AllDifferent>
+  	
+  	<owl:AllDifferent>
+      <owl:distinctMembers rdf:parseType="Collection">
+     	 <vin:LaptopType rdf:about="#Gaming" />
+     	 <vin:LaptopType rdf:about="#Ultra" />
+     	 <vin:LaptopType rdf:about="#Tablet" />
+     	 <vin:LaptopType rdf:about="#Standart" />
+     	 <vin:LaptopType rdf:about="#Business" />
+      </owl:distinctMembers>
+  	</owl:AllDifferent>
+	
+	
+	<owl:AllDifferent>
+      <owl:distinctMembers rdf:parseType="Collection">
+     	 <vin:LaptopBrand rdf:about="#ASUS" />
+     	 <vin:LaptopBrand rdf:about="#Lenovo" />
+     	 <vin:LaptopBrand rdf:about="#LenevoTablet" />
+     	 <vin:LaptopBrand rdf:about="#ASUSTransformer" />
+     	 <vin:LaptopBrand rdf:about="#HP" />
+      </owl:distinctMembers>
+  	</owl:AllDifferent>
+	
+	
+	
+	</rdf:RDF>
+
+  
+
+
+
+<!-- Generated by the OWL API (version 4.2.6.20160910-2108) https://github.com/owlcs/owlapi -->
+
